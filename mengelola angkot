@@ -1,0 +1,61 @@
+
+// object angkot
+function Angkot( sopir, penumpang, trayek, kas, kursi){
+    this.sopir = sopir;
+    this.penumpang = penumpang;
+    this.trayek = trayek;
+    this.kas = kas;
+    this.kursi = kursi;
+
+
+    this.penumpangNaik = function(nama){
+        for(var i = 0; i<this.penumpang.length; i++){
+            if(this.penumpang[i] == 'kosong'){
+                penumpang[i] = nama;
+                return this.penumpang;
+            }
+        }
+        if(this.penumpang.length == kursi){
+            console.log('kursi penumpang telah penuh, mohon maaf');
+            return this.penumpang;
+        }else if(this.penumpang.includes(nama)){
+            console.log('nama penumpang sudah ada');
+            return this.penumpang;
+        }else{
+            this.penumpang.push(nama);
+            return this.penumpang
+        }
+    }
+
+    this.penumpangTurun = function(nama,bayar){
+        if(this.penumpang.length === 0){
+            console.log("tidak ada penumpang !");
+            return;
+        }
+        for(var i = 0; i< this.penumpang.length; i++){
+            if(this.penumpang[i] == 'kosong'){
+                this.kursi -= 1;
+                if(this.kursi == 0){
+                    console.log('maaf tidak ada penumpang');
+                    return this.penumpang;
+                }
+            }
+        }
+
+        for(var i = 0; i<this.penumpang.length; i++){
+            if(this.penumpang[i] == nama){
+                this.penumpang[i] = 'kosong';
+                this.kas += bayar;
+                console.log('penumpang '+nama+' telah turun, dengan membayar = '+bayar);
+                return;
+            }
+        }
+        console.log('penumpang tidak ditemukan');
+        return this.penumpang;
+    }
+}
+
+var angkot1 = new Angkot( 'teguh priyanto', [], ['pasar','alun-alun'], 0, 5);
+var angkot1 = new Angkot( 'asep hendrawan', [], ['terminal','bundaran kijang'], 0, 5);
+
+// 
