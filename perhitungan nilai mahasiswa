@@ -1,0 +1,86 @@
+var matakuliah = ['pkn', 'metode numerik', 'pemrograman', 'kalkulus'];
+var mhs = [];
+var namaMhs = [];
+
+// object mahasiswa
+function Mahasiswa(nama, matkul = []){
+    this.nama = nama;
+    this.matkul = matkul;
+    this.nilai = [];
+    this.poin = [];
+}
+
+// fungsi untuk meng input data mahasisswa
+function input(nama,matkul = []){
+    for(var i = 0; i<matkul.length; i++){
+        if(matakuliah.includes(matkul[i]) == false ){
+            console.log('mata kulaih salah ');
+            return;
+        }
+    }
+    mhs.push(new Mahasiswa(nama, matkul) );
+    namaMhs.push(nama);
+
+}
+
+// fungsi untuk meng input kan nilai mahasiswa di setiap mata kuliahnya
+// dengan syarat data mahasiswa sudah di inputkan
+function inputNilai(nama){
+    for(var i = 0; i<namaMhs.length; i++){
+        if(nama == namaMhs[i] ){
+
+            for(var j = 0; j<mhs[i].matkul.length; j++){
+                var nilai = prompt('input nilai ' + mhs[i].matkul[j]+ ' = ' );
+                mhs[i].nilai[j] = nilai;
+
+                if(nilai >= 80){
+                    mhs[i].poin[j] = 'A';
+                }else if (nilai <= 40) {
+                    mhs[i].poin[j] = 'C';
+                }else{
+                    mhs[i].poin[j] = 'B';
+                }
+            }
+
+            return;
+        }
+    }
+}
+
+// fungsi untuk menampilkan data mahasiswa setelah data berhasil di inputkan
+function tampilkandata(nama){
+    for(var i = 0; i<namaMhs.length; i++){
+        if(nama == namaMhs[i] ){
+            document.write('nama mahasiswa = '+nama+ ' mata kuliah yang di pilih = '+mhs[i].matkul);
+
+            return;
+        }
+    }
+}
+
+
+var pilihmenu = prompt('ketik a untuk input data mahasiswa, pilih b untuk input nilai mahasiswa');
+var matakuliahdipilih = [];
+var nama;
+
+    while(pilihmenu != c){
+        if(pilihmenu == 'a'){
+            nama = prompt('input nama mahasiswa = ');
+            var jumlahMatkul = prompt('input jumlah matkul = (misal : 1,2 atau 3)');
+
+            for(var k = 0; k<jumlahMatkul; k++){
+                matakuliahdipilih[k] = prompt('input mata kuliah ke '+(k+1)+ ' = ');
+            }
+
+            input(nama,matakuliahdipilih);
+            tampilkandata(nama);
+
+        }else if(pilihmenu == b){
+            nama = prompt('input nama mahasiswa yang ingin di inputkan nilainya = ');
+
+            inputNilai(nama);
+        }else{
+            alert('piliha salah !');
+        }
+    pilihmenu = prompt('ketik c untuk berhenti');
+}
