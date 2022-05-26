@@ -1,0 +1,31 @@
+var lanjut = true;
+
+while(lanjut == true){
+    
+    var user = prompt("masukan pilihan = gunting, kertas, batu");
+    var computer = Math.random();
+    var hasil = '';
+
+    if(computer <= 0.3){
+        computer = "gunting";
+    }else if(computer >= 0.7){
+        computer = "kertas";
+    }else{
+        computer = "batu";
+    }
+
+    if( user == computer ){
+       hasil = "SERI"
+    }else if( user == "gunting"){
+        (computer == 'kertas') ? hasil = 'menang' : hasil = 'kalah';
+    }else if( user == "kertas"){
+        (computer == 'batu') ? hasil = 'menang' : hasil = 'kalah';
+    }else if(user == "batu"){
+        (computer == 'gunting') ? hasil = 'menang' : hasil = 'kalah';
+    }else{
+        hasil = "pilihan yang kamu masukan salah !";
+    }
+
+    alert("user memilih "+user+" computer memilih "+computer+"\n"+hasil);
+    lanjut = confirm("mau lanjut?");
+}
